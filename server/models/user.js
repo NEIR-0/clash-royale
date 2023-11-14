@@ -50,6 +50,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         defaultValue: "user",
       },
+      // wallet
+      wallet: {
+        type: DataTypes.INTEGER,
+        defaultValue: 50,
+      },
     },
     {
       sequelize,

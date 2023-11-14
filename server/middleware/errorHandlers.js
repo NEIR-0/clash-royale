@@ -13,6 +13,9 @@ const errHandlers = async (err, req, res, next) => {
     case "Unauthenticated":
       res.status(400).json({ message: "email/password invalid" });
       break;
+    case "notEnough":
+      res.status(400).json({ message: "your coin its not enough. Please top up now!" });
+      break;
 
     case "SequelizeUniqueConstraintError":
       res.status(400).json({ message: err.errors[0].message });

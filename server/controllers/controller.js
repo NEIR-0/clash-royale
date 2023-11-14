@@ -119,11 +119,16 @@ class Controllers {
   static async addCard(req, res, next) {
     try {
       const { id } = req.params;
-      console.log(id, "<<<<<<<<<<<<<");
+      // console.log(id, "<<<<<<<<<<<<<");
       const card = await Card.findByPk(id);
       if (!card) throw { name: "notFound" };
+      const user = await User.findByPk(req.user.id);
+      // console.log(card, user);
       // check
       const duplicate = await User.findOne({
+        where: {
+          id: req.user.id,
+        },
         include: {
           model: Card,
           where: {
@@ -131,9 +136,23 @@ class Controllers {
           },
         },
       });
+      // console.log(duplicate);
       if (!duplicate) {
-        const data = await Inventory.create({ userId: req.user.id, cardId: id });
-        res.status(201).json(data);
+        const coins = user.wallet - card.cardPrice;
+        if (coins <= 0) throw { name: "notEnough" };
+        else {
+          // console.log("masuk <<<<<<<<<<");
+          await User.update(
+            { wallet: coins },
+            {
+              where: {
+                id: req.user.id,
+              },
+            }
+          );
+          const data = await Inventory.create({ userId: req.user.id, cardId: id });
+          res.status(201).json({ data });
+        }
       } else {
         throw { name: "duplicateCard" };
       }

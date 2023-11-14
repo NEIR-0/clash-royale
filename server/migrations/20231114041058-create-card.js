@@ -24,6 +24,10 @@ module.exports = {
       description: {
         type: Sequelize.STRING,
       },
+      // card price
+      cardPrice: {
+        type: Sequelize.INTEGER,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

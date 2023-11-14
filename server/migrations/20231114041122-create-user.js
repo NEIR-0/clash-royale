@@ -23,6 +23,12 @@ module.exports = {
       },
       role: {
         type: Sequelize.STRING,
+        defaultValue: "user",
+      },
+      // wallet
+      wallet: {
+        type: Sequelize.INTEGER,
+        defaultValue: 50,
       },
       createdAt: {
         allowNull: false,

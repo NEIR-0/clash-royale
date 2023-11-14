@@ -14,6 +14,18 @@ module.exports = {
       delete el.evolved_spells_sc_key;
       delete el.is_evolved;
 
+      if (el.rarity === "Common") {
+        el.cardPrice = 3;
+      } else if (el.rarity === "Rare") {
+        el.cardPrice = 5;
+      } else if (el.rarity === "Epic") {
+        el.cardPrice = 7;
+      } else if (el.rarity === "Legendary") {
+        el.cardPrice = 20;
+      } else if (el.rarity === "Champion") {
+        el.cardPrice = 45;
+      }
+
       el.createdAt = new Date();
       el.updatedAt = new Date();
       return el;
