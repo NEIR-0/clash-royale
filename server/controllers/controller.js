@@ -67,7 +67,7 @@ class Controllers {
           id: id,
         },
       });
-      if(!card) throw {name: "notFound"}
+      if (!card) throw { name: "notFound" };
 
       res.status(200).json(card);
     } catch (error) {
@@ -88,6 +88,53 @@ class Controllers {
         },
       });
       res.status(200).json({ message: `card with id: ${id}, has been removed` });
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  // inventory
+  static async inventory(req, res, next) {
+    try {
+      const { id } = req.user;
+      const user = await User.findOne({
+        where: {
+          id: id,
+        },
+        include: {
+          model: Card,
+        },
+      });
+      console.log(user);
+
+      res.status(200).json(user);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  // addCard
+  static async addCard(req, res, next) {
+    try {
+      const { id } = req.params;
+      console.log(id, "<<<<<<<<<<<<<");
+      // check
+      const duplicate = await User.findOne({
+        include: {
+          model: Card,
+          where: {
+            id: id,
+          },
+        },
+      });
+      if (!duplicate) {
+        const data = await Inventory.create({ userId: req.user.id, cardId: id });
+        res.status(201).json(data);
+      } else {
+        throw { name: "duplicateCard" };
+      }
     } catch (error) {
       console.log(error);
       next(error);
