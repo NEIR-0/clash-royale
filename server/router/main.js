@@ -8,6 +8,8 @@ const authorize = require("../middleware/authorize");
 router.get("/", Controllers.listCard);
 router.get("/inventory", Controllers.inventory);
 router.get("/coins", Controllers.listCoins);
+router.get("/orders", Controllers.listOrders);
+router.post("/orders/:coinId", Controllers.addOrder);
 router.post("/inventory/:id", Controllers.addCard);
 router.get("/card/:id", Controllers.cardId);
 router.delete("/delete/:id", authorize, Controllers.deleteCard);

@@ -1,4 +1,4 @@
-const { Card, User, Inventory, Coin } = require("../models");
+const { Card, User, Inventory, Coin, Order } = require("../models");
 const { hashing, compare } = require("../helper/bycryptjs");
 const { createToken, verifyToken } = require("../helper/jwt");
 
@@ -120,6 +120,8 @@ class Controllers {
     try {
       const { id } = req.params;
       console.log(id, "<<<<<<<<<<<<<");
+      const card = await Card.findByPk(id);
+      if (!card) throw { name: "notFound" };  
       // check
       const duplicate = await User.findOne({
         include: {
@@ -147,6 +149,42 @@ class Controllers {
       const coin = await Coin.findAll();
 
       res.status(200).json(coin);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  // listOrders
+  static async listOrders(req, res, next) {
+    try {
+      const order = await Order.findAll({
+        where: {
+          userId: req.user.id,
+        },
+      });
+      console.log(order);
+
+      res.status(200).json(order);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  // addOrder
+  static async addOrder(req, res, next) {
+    try {
+      const { coinId } = req.params;
+      console.log(coinId, "<<<<<<<<<<<<<");
+
+      const listCoin = await Coin.findByPk(coinId);
+      if (!listCoin) throw { name: "notFound" };
+      // console.log(req.user.id, "<>>>>>>>>>>>>");
+      const order = await Order.create({ coinId, userId: req.user.id });
+      console.log(order);
+
+      res.status(201).json(order);
     } catch (error) {
       console.log(error);
       next(error);
