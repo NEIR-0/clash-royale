@@ -1,4 +1,4 @@
-const { Card, User, Inventory } = require("../models");
+const { Card, User, Inventory, Coin } = require("../models");
 const { hashing, compare } = require("../helper/bycryptjs");
 const { createToken, verifyToken } = require("../helper/jwt");
 
@@ -135,6 +135,18 @@ class Controllers {
       } else {
         throw { name: "duplicateCard" };
       }
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  // listCoins
+  static async listCoins(req, res, next) {
+    try {
+      const coin = await Coin.findAll();
+
+      res.status(200).json(coin);
     } catch (error) {
       console.log(error);
       next(error);
