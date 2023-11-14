@@ -1,15 +1,24 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
+// middleware
+const errHandlers = require("./middleware/errorHandlers");
+const authentications = require("./middleware/authentication");
 // router
-const public = require("./router/public");
-const auth = require("./router/public");
-
+const main = require("./router/main");
+const auth = require("./router/auth");
 
 app.use(express.json());
 
-// url
+// auth
 app.use("/", auth);
-app.use("/", public);
 
+// auth
+app.use(authentications);
+
+app.use("/", main);
+
+// errHandlers
+app.use(errHandlers);
 
 module.exports = app;
