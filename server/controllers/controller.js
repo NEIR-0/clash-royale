@@ -67,6 +67,7 @@ class Controllers {
           id: id,
         },
       });
+      if(!card) throw {name: "notFound"}
 
       res.status(200).json(card);
     } catch (error) {
@@ -81,7 +82,12 @@ class Controllers {
       const { id } = req.params;
       console.log(id);
 
-      // res.status(200).json(card);
+      await Card.destroy({
+        where: {
+          id: id,
+        },
+      });
+      res.status(200).json({ message: `card with id: ${id}, has been removed` });
     } catch (error) {
       console.log(error);
       next(error);

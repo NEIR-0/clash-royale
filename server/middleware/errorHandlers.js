@@ -26,6 +26,9 @@ const errHandlers = async (err, req, res, next) => {
       res.status(403).json({ message: "forbidden" });
       break;
 
+    case "notFound":
+      res.status(404).json({ message: "Not Found" });
+      break;
     default:
       res.status(500).json({ message: "jwt malformed" });
       break;
