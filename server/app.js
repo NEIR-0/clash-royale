@@ -7,8 +7,12 @@ const authentications = require("./middleware/authentication");
 // router
 const main = require("./router/main");
 const auth = require("./router/auth");
+const midtrans = require("./router/midtrans");
 
 app.use(express.json());
+
+// midtrans
+app.use("/", midtrans);
 
 // auth
 app.use("/", auth);

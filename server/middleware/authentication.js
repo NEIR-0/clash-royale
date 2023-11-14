@@ -25,7 +25,7 @@ const authentications = async (req, res, next) => {
     // console.log(req.user);
     next();
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     next(error);
   }
 };
