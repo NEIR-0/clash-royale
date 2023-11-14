@@ -4,6 +4,7 @@ const authentications = async (req, res, next) => {
   try {
     const { authorization } = req.headers;
     // console.log(authorization);
+    if (!authorization) throw { name: "invalidToken" };
     const rawToken = authorization.split(" ");
     if (rawToken.length < 2) {
       throw { name: "invalidToken" };

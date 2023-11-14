@@ -121,7 +121,7 @@ class Controllers {
       const { id } = req.params;
       console.log(id, "<<<<<<<<<<<<<");
       const card = await Card.findByPk(id);
-      if (!card) throw { name: "notFound" };  
+      if (!card) throw { name: "notFound" };
       // check
       const duplicate = await User.findOne({
         include: {
@@ -185,6 +185,43 @@ class Controllers {
       console.log(order);
 
       res.status(201).json(order);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  // dataUser
+  static async dataUser(req, res, next) {
+    try {
+      const user = await User.findByPk(req.user.id);
+      res.status(200).json(user);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  // updateUser
+  static async updateUser(req, res, next) {
+    try {
+      console.log("masuk <<<<<<<<<<");
+      const user = await User.findByPk(req.user.id);
+      if (!user) throw { name: "notFound" };
+
+      const { username, email, password } = req.body;
+      console.log(username, email, password);
+      const updateUser = await User.update(
+        { username, email, password },
+        {
+          where: {
+            id: req.user.id,
+          },
+        }
+      );
+      console.log(updateUser);
+
+      res.status(201).json({ message: "user successfull updated" });
     } catch (error) {
       console.log(error);
       next(error);
