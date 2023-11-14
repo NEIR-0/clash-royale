@@ -7,7 +7,9 @@ const errHandlers = async (err, req, res, next) => {
     case "invalidEmail":
       res.status(400).json({ message: "email cant empty" });
       break;
-
+    case "duplicateCard":
+      res.status(400).json({ message: "you already have one" });
+      break;
     case "Unauthenticated":
       res.status(400).json({ message: "email/password invalid" });
       break;
