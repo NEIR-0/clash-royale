@@ -45,12 +45,43 @@ class Controllers {
     }
   }
 
-  
   // list card
   static async listCard(req, res, next) {
     try {
       const card = await Card.findAll();
+
       res.status(200).json(card);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  // cardId
+  static async cardId(req, res, next) {
+    try {
+      const { id } = req.params;
+      // console.log(id);
+      const card = await Card.findOne({
+        where: {
+          id: id,
+        },
+      });
+
+      res.status(200).json(card);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  // deleteCard
+  static async deleteCard(req, res, next) {
+    try {
+      const { id } = req.params;
+      console.log(id);
+
+      // res.status(200).json(card);
     } catch (error) {
       console.log(error);
       next(error);

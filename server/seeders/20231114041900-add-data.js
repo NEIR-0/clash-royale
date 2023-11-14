@@ -26,15 +26,24 @@ module.exports = {
         username: "admin",
         email: "admin@gmail.com",
         password: hashing("admin"),
+        role: "admin",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
     ];
     await queryInterface.bulkInsert("Users", admin);
+
+    const coin = require("../data/coin.json").map((el) => {
+      el.createdAt = new Date();
+      el.updatedAt = new Date();
+      return el;
+    });
+    await queryInterface.bulkInsert("Coins", coin);
   },
 
   async down(queryInterface, Sequelize) {
     await queryInterface.bulkDelete("Cards", null, {});
     await queryInterface.bulkDelete("Users", null, {});
+    await queryInterface.bulkDelete("Coins", null, {});
   },
 };

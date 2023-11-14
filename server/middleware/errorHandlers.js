@@ -15,9 +15,19 @@ const errHandlers = async (err, req, res, next) => {
     case "SequelizeUniqueConstraintError":
       res.status(400).json({ message: err.errors[0].message });
       break;
+    case "invalidToken":
+    case "JsonWebTokenError":
+      res.status(401).json({ message: "invalid token" });
+      break;
+    case "invalidUser":
+      res.status(401).json({ message: "user not found" });
+      break;
+    case "forbidden":
+      res.status(403).json({ message: "forbidden" });
+      break;
 
     default:
-      res.status(500).json({ message: "Internal Server Error" });
+      res.status(500).json({ message: "jwt malformed" });
       break;
   }
 };
