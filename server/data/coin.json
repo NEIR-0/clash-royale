@@ -1,0 +1,22 @@
+[
+  {
+    "amount": 10,
+    "price": 10000
+  },
+  {
+    "amount": 25,
+    "price": 20000
+  },
+  {
+    "amount": 50,
+    "price": 48000
+  },
+  {
+    "amount": 75,
+    "price": 70000
+  },
+  {
+    "amount": 100,
+    "price": 98000
+  }
+]
