@@ -22,6 +22,8 @@ module.exports = (sequelize, DataTypes) => {
       elixir: DataTypes.STRING,
       rarity: DataTypes.STRING,
       description: DataTypes.STRING,
+      // card price
+      cardPrice: DataTypes.INTEGER,
     },
     {
       sequelize,
