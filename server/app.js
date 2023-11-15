@@ -9,6 +9,10 @@ const main = require("./router/main");
 const auth = require("./router/auth");
 const midtrans = require("./router/midtrans");
 
+// deploy
+const cors = require("cors");
+app.use(cors());
+
 app.use(express.json());
 
 // midtrans
