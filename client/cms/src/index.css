@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 .bgHome {
   background-image: url("https://images5.alphacoders.com/128/1284525.jpg");
   background-size: cover;

@@ -33,7 +33,7 @@ function HomePage() {
       <Navbar />
       <section className="py-10">
         {/* home */}
-        <div className="w-full h-screen flex justify-center items-center relative bgHome">
+        <div id="homefirst" className="w-full h-screen flex justify-center items-center relative bgHome">
           <div className="absolute w-full h-full flex justify-center items-center backdrop-blur-[1px]">
             <h1 className="text-[70px] font-bold text-white absolute z-10">Welcome Back Royales!</h1>
             <h1 className="text-[70px] font-bold text-stone-400 absolute ms-2 mt-2">Welcome Back Royales!</h1>

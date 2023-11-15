@@ -10,13 +10,15 @@ function Navbar() {
     <>
       <section className="fixed w-full h-12 bg-slate-50 px-5 shadow-md flex justify-between z-10">
         <div className="logo">
-          <img src={logo} alt="barbarian-kings" className="w-12 h-12" />
+          <a href="#homefirst">
+            <img src={logo} alt="barbarian-kings" className="w-12 h-12" />
+          </a>
         </div>
         {/* naigations */}
         <div className="w-[200px] flex justify-evenly bg-red-300 items-center">
-          <Link to="/">home</Link>
-          <Link to="/marketCard">market</Link>
-          <Link to="/marketCoin">coin</Link>
+          <Link to="/mainpages">home</Link>
+          <Link to="/mainpages/marketCard">market</Link>
+          <Link to="/mainpages/marketCoin">coin</Link>
         </div>
 
         <div className="h-12 w-12 bg-yellow-400 flex justify-center items-center">

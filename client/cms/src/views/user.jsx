@@ -48,7 +48,7 @@ function User() {
 
   const logOut = () => {
     localStorage.clear();
-    naviagate("/");
+    naviagate("/login");
   };
 
   console.log(user);
