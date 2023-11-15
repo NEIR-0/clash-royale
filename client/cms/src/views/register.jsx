@@ -4,11 +4,12 @@ import axios from "axios";
 import { local } from "../routers/constanst";
 import { useNavigate, Link } from "react-router-dom";
 
-function Login() {
+function Register() {
   const navigate = useNavigate();
   const [form, setForm] = useState({
     email: "",
     password: "",
+    username: "",
   });
 
   const inputUser = (e) => {
@@ -22,12 +23,11 @@ function Login() {
   const submitForm = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(local + "login", form);
+      console.log("masuk <<<<<");
+      const { data } = await axios.post(local + "register", form);
+        console.log(data);
 
-      localStorage.token = data.token;
-      // console.log(data);
-
-      navigate("/mainpages");
+      navigate("/login");
     } catch (error) {
       console.log(error);
     }
@@ -41,6 +41,13 @@ function Login() {
         <form onSubmit={submitForm} className="w-[400px] h-[500px] bg-stone-50 shadow-lg flex flex-col justify-evenly items-center rounded-lg">
           <div className="">
             <img src={logo} alt="barbarian-kings" className="w-28" />
+          </div>
+
+          {/* username */}
+          <div className="">
+            <label htmlFor="username">Username</label>
+            <br />
+            <input onChange={inputUser} type="text" name="username" className="outline-none rounded-md border border-stone-500 px-3 py-1 mt-2" />
           </div>
 
           {/* email */}
@@ -57,11 +64,10 @@ function Login() {
             <input onChange={inputUser} type="text" name="password" className="outline-none rounded-md border border-stone-500 px-3 py-1 mt-2" />
           </div>
           <button className="px-10 py-3 bg-cyan-300 rounded-lg text-white duration-300 ease-in-out transition-all hover:bg-cyan-400 hover:text-stone-500">submit</button>
-          <Link to="/register">Register</Link>
         </form>
       </section>
     </>
   );
 }
 
-export default Login;
+export default Register;

@@ -8,6 +8,8 @@ import HomePage from "./views/home";
 import User from "./views/user";
 import MarketCard from "./views/marketCard";
 import CoinMarket from "./views/coinMarket";
+import Register from "./views/register";
+import MainFeatures from "./views/mainFeatures";
 
 const auth = () => {
   if (!localStorage.token) {
@@ -22,25 +24,35 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/",
-        element: <HomePage />,
-        loader: auth,
-      },
-      {
         path: "login",
         element: <Login />,
       },
       {
-        path: "user",
-        element: <User />,
+        path: "register",
+        element: <Register />,
       },
       {
-        path: "marketCard",
-        element: <MarketCard />,
-      },
-      {
-        path: "marketCoin",
-        element: <CoinMarket />,
+        path: "mainpages",
+        element: <MainFeatures />,
+        loader: auth,
+        children: [
+          {
+            path: "",
+            element: <HomePage />,
+          },
+          {
+            path: "user",
+            element: <User />,
+          },
+          {
+            path: "marketCard",
+            element: <MarketCard />,
+          },
+          {
+            path: "marketCoin",
+            element: <CoinMarket />,
+          },
+        ],
       },
     ],
   },
