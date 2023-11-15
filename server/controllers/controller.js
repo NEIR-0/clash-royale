@@ -306,27 +306,6 @@ class Controllers {
   // notifications
   static async notifications(req, res, next) {
     try {
-      /*
-      {
-        va_numbers: [ { va_number: '80884339086', bank: 'bca' } ],                086', ban
-        transaction_time: '2023-11-15 11:03:30',                                  30',     
-        transaction_status: 'settlement',   
-        transaction_id: '42bda04d-3592-4899-a430-fdc4a430-fdc47203f7b9',
-        status_message: 'midtrans payment notificatiotification',
-        status_code: '200',
-        signature_key: '2b4ea25fd125545d391168fcb6b9268fcb6b921ab305c9c8bab4e631f9900fe188a7427342e5821f223617427342e513753372f07cd153de0fd95a233122addaa4b7cc748358ed95a23312f4739',    
-        settlement_time: '2023-11-15 11:03:37',      7',
-        payment_type: 'bank_transfer',      
-        payment_amounts: [],
-        order_id: 'C-1700021007559',        
-        merchant_id: 'G881380884',
-        gross_amount: '70000.00',
-        fraud_status: 'accept',
-        expiry_time: '2023-11-16 11:03:30', 
-        currency: 'IDR'
-      }
-      */
-
       // console.log(req.body);
       const { transaction_status, fraud_status, order_id } = req.body;
       const successProcess = async () => {

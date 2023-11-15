@@ -6,7 +6,7 @@ function CardMarket({ data, option }) {
   return (
     <>
       <section className="w-[300px] m-2 h-fit bg-white shadow-md flex flex-col border border-stone-600 p-5 rounded-md">
-        <img src={data && data.imgUrl} className="m-auto w-[200px]  rounded-md mb-5" />
+        <img src={data && data.imgUrl} className="m-auto w-[200px] rounded-md mb-5" />
         <h1 className="text-center text-lg font-bold mb-3">{data && data.name}</h1>
         <div className="flex justify-around mb-5">
           <div className="">

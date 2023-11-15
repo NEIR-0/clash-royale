@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-import logo from "../../public/logo.png";
 import { local } from "../routers/constanst";
 import Swal from "sweetalert2";
 import CardCoin from "../component/coinCard";
@@ -25,7 +24,32 @@ function CoinMarket() {
       console.log(error);
     }
   };
-  console.log(coin);
+  //   console.log(coin);
+
+  const handlepayment = async (id) => {
+    try {
+      await axios.post(
+        local + `orders/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.token,
+          },
+        }
+      );
+      // console.log(data);
+
+      const { data } = await axios.get(local + "payment/midtrans/token", {
+        headers: {
+          Authorization: "Bearer " + localStorage.token,
+        },
+      });
+      console.log(data);
+      window.snap.pay(data.token);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -35,7 +59,7 @@ function CoinMarket() {
         <div className="justify-center flex flex-wrap mt-5">
           {coin &&
             coin.map((el) => {
-              return <CardCoin data={el} />;
+              return <CardCoin key={el.id} data={el} handle={handlepayment} />;
             })}
         </div>
       </section>
