@@ -51,6 +51,21 @@ class Controllers {
   // list card
   static async listCard(req, res, next) {
     try {
+      const card = await Card.findAll({
+        limit: 3,
+        order: [["id", "DESC"]],
+      });
+
+      res.status(200).json(card);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  // market
+  static async market(req, res, next) {
+    try {
       const card = await Card.findAll();
 
       res.status(200).json(card);

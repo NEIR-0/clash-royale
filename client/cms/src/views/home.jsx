@@ -1,9 +1,33 @@
 import { useState } from "react";
 import Navbar from "../component/navbar";
 import home from "../../public/home.png";
-import Card from "../component/card";
+import Card from "../component/cardHome";
 import Footer from "../component/footer";
+import { useEffect } from "react";
+import axios from "axios";
+import { local } from "../routers/constanst";
+
 function HomePage() {
+  const [card, setCard] = useState();
+  useEffect(() => {
+    dataCard();
+  }, []);
+
+  const dataCard = async (e) => {
+    try {
+      const { data } = await axios.get(local, {
+        headers: {
+          Authorization: "Bearer " + localStorage.token,
+        },
+      });
+      // console.log(data);
+      setCard(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // console.log(card);
+
   return (
     <>
       <Navbar />
@@ -30,13 +54,12 @@ function HomePage() {
         <div className="w-full h-fit mt-12">
           <h1 className="text-center font-bold text-[60px]">Card Collections</h1>
           <p className="text-center text-[20px]">"Card Mastery Begins Here"</p>
+
           <div className="justify-center flex flex-wrap mt-5">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {card &&
+              card.map((el) => {
+                return <Card data={el} option="marketCard" />;
+              })}
           </div>
         </div>
       </section>
