@@ -6,6 +6,7 @@ const Controllers = require("../controllers/controller");
 const authorize = require("../middleware/authorize");
 
 router.get("/", Controllers.listCard);
+router.get("/market", Controllers.market);
 router.get("/inventory", Controllers.inventory);
 router.get("/users", Controllers.dataUser);
 router.get("/coins", Controllers.listCoins);

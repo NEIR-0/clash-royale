@@ -5,6 +5,9 @@ import { createBrowserRouter, RouterProvider, redirect } from "react-router-dom"
 import App from "./App.jsx";
 import Login from "./views/login.jsx";
 import HomePage from "./views/home";
+import User from "./views/user";
+import MarketCard from "./views/marketCard";
+import CoinMarket from "./views/coinMarket";
 
 const auth = () => {
   if (!localStorage.token) {
@@ -26,6 +29,18 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "user",
+        element: <User />,
+      },
+      {
+        path: "marketCard",
+        element: <MarketCard />,
+      },
+      {
+        path: "marketCoin",
+        element: <CoinMarket />,
       },
     ],
   },
