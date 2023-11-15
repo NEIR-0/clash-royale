@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
+// controller
+const Controllers = require("../controllers/controller");
 
-router.get("/midtrans", (req, res) => {
-  res.status(200).json({ messgae: "masuk maseh midtrans" });
-});
+router.post("/payment/midtrans/notifications", Controllers.notifications);
 
 module.exports = router;

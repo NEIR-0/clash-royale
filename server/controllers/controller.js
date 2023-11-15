@@ -2,6 +2,9 @@ const { Card, User, Inventory, Coin, Order } = require("../models");
 const { hashing, compare } = require("../helper/bycryptjs");
 const { createToken, verifyToken } = require("../helper/jwt");
 
+// midtrans
+const midtransClient = require("midtrans-client");
+
 class Controllers {
   // login
   static async login(req, res, next) {
@@ -241,6 +244,131 @@ class Controllers {
       console.log(updateUser);
 
       res.status(201).json({ message: "user successfull updated" });
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  // getMidtransToken
+  static async getMidtransToken(req, res, next) {
+    try {
+      let snap = new midtransClient.Snap({
+        // Set to true if you want Production Environment (accept real transaction).
+        isProduction: false,
+        serverKey: process.env.MIDTRANS_SERVER_KEY,
+      });
+
+      const order = await Order.findOne({
+        limit: 1,
+        where: {
+          userId: req.user.id,
+        },
+        include: {
+          model: Coin,
+        },
+        order: [["createdAt", "DESC"]],
+      });
+      // console.log(order);
+
+      let parameter = {
+        transaction_details: {
+          order_id: order.id,
+          userId: order.userId,
+          gross_amount: order.Coin.price,
+          status: "panding",
+        },
+      };
+
+      const response = await snap.createTransaction(parameter);
+      res.json(response);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  // notifications
+  static async notifications(req, res, next) {
+    try {
+      /*
+      {
+        va_numbers: [ { va_number: '80884339086', bank: 'bca' } ],                086', ban
+        transaction_time: '2023-11-15 11:03:30',                                  30',     
+        transaction_status: 'settlement',   
+        transaction_id: '42bda04d-3592-4899-a430-fdc4a430-fdc47203f7b9',
+        status_message: 'midtrans payment notificatiotification',
+        status_code: '200',
+        signature_key: '2b4ea25fd125545d391168fcb6b9268fcb6b921ab305c9c8bab4e631f9900fe188a7427342e5821f223617427342e513753372f07cd153de0fd95a233122addaa4b7cc748358ed95a23312f4739',    
+        settlement_time: '2023-11-15 11:03:37',      7',
+        payment_type: 'bank_transfer',      
+        payment_amounts: [],
+        order_id: 'C-1700021007559',        
+        merchant_id: 'G881380884',
+        gross_amount: '70000.00',
+        fraud_status: 'accept',
+        expiry_time: '2023-11-16 11:03:30', 
+        currency: 'IDR'
+      }
+      */
+
+      // console.log(req.body);
+      const { transaction_status, fraud_status, order_id } = req.body;
+      const successProcess = async () => {
+        try {
+          const order = await Order.update(
+            { status: true },
+            {
+              where: {
+                id: order_id,
+              },
+              returning: true,
+            }
+          );
+          // console.log(order);
+          // console.log(order[1][0].userId);
+          const userId = order[1][0].userId;
+          const coinId = order[1][0].coinId;
+          const coin = await Coin.findByPk(coinId);
+          const user = await User.findByPk(userId);
+
+          const wallet = user.wallet + coin.amount;
+          console.log(user.wallet, coin.amount);
+          console.log(wallet);
+          console.log("wallet <<<<<<<>>>>>>>>>>>");
+
+          await User.update(
+            { wallet: wallet },
+            {
+              where: {
+                id: userId,
+              },
+            }
+          );
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      // await successProcess();
+
+      if (transaction_status == "capture") {
+        if (fraud_status == "accept") {
+          await successProcess();
+        }
+      } else if (transaction_status == "settlement") {
+        await successProcess();
+      } else if (transaction_status == "cancel" || transaction_status == "deny" || transaction_status == "expire") {
+        await Order.update(
+          { status: false },
+          {
+            where: {
+              id: order_id,
+            },
+          }
+        );
+      }
+
+      res.sendStatus(200);
     } catch (error) {
       console.log(error);
       next(error);
