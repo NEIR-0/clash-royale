@@ -18,8 +18,8 @@ import logo from "../../public/logo.png";
 function Card() {
   return (
     <>
-      <section className="w-[300px] m-2 h-fit bg-red-500 shadow-xl p-5 rounded-md">
-        <img src={logo} className="bg-white rounded-md mb-5" />
+      <section className="w-[300px] m-2 h-fit bg-white shadow-md border border-stone-600 p-5 rounded-md">
+        <img src={logo} className="m-auto w-[200px] bg-red-400 rounded-md mb-5" />
         <h1 className="text-center text-lg font-bold mb-3">Flying Machine</h1>
         <div className="flex justify-around mb-5">
           <div className="">
