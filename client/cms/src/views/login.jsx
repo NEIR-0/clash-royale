@@ -32,8 +32,7 @@ function Login() {
       console.log(error);
     }
   };
-
-  console.log(form);
+  // console.log(form);
 
   return (
     <>

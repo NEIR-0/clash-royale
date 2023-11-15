@@ -246,10 +246,10 @@ class Controllers {
       const user = await User.findByPk(req.user.id);
       if (!user) throw { name: "notFound" };
 
-      const { username, email, password } = req.body;
-      console.log(username, email, password);
+      const { username } = req.body;
+      // console.log(username, email, password);
       const updateUser = await User.update(
-        { username, email, password },
+        { username },
         {
           where: {
             id: req.user.id,

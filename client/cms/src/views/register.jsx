@@ -25,15 +25,13 @@ function Register() {
     try {
       console.log("masuk <<<<<");
       const { data } = await axios.post(local + "register", form);
-        console.log(data);
+      console.log(data);
 
       navigate("/login");
     } catch (error) {
       console.log(error);
     }
   };
-
-  console.log(form);
 
   return (
     <>

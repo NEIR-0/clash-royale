@@ -50,8 +50,14 @@ function User() {
     localStorage.clear();
     naviagate("/login");
   };
+  const changeUser = () => {
+    naviagate("/mainpages/changeUser");
+  };
+  // console.log(user);
 
-  console.log(user);
+  const changeAdmin = () => {
+    naviagate("/mainpages/admin");
+  };
 
   return (
     <>
@@ -69,6 +75,9 @@ function User() {
             </h1>
           </div>
           <div className="absolute right-6 top-1/2 -translate-y-1/2">
+            <button onClick={changeUser} className="px-10 py-2 bg-white rounded-md me-5">
+              Change
+            </button>
             <button onClick={logOut} className="px-10 py-2 bg-white rounded-md">
               Log out
             </button>
@@ -76,7 +85,13 @@ function User() {
         </div>
         {/* admin */}
 
-        {user && user.role === "admin" ? <button>admin site</button> : ""}
+        {user && user.role === "admin" ? (
+          <button onClick={changeAdmin} className="px-10 py-3 bg-red-500 rounded-md ms-10 mb-10">
+            admin site
+          </button>
+        ) : (
+          ""
+        )}
 
         {/* inventory */}
         <h1 className="text-center text-[40px]">Yours Card Collections</h1>

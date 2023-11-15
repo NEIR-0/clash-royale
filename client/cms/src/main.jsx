@@ -10,6 +10,8 @@ import MarketCard from "./views/marketCard";
 import CoinMarket from "./views/coinMarket";
 import Register from "./views/register";
 import MainFeatures from "./views/mainFeatures";
+import Admin from "./views/admin";
+import ChangeUser from "./views/changeUser";
 
 const auth = () => {
   if (!localStorage.token) {
@@ -51,6 +53,14 @@ const router = createBrowserRouter([
           {
             path: "marketCoin",
             element: <CoinMarket />,
+          },
+          {
+            path: "admin",
+            element: <Admin />,
+          },
+          {
+            path: "changeUser",
+            element: <ChangeUser />,
           },
         ],
       },
