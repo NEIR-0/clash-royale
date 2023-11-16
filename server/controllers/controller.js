@@ -4,7 +4,8 @@ const { createToken, verifyToken } = require("../helper/jwt");
 const { OAuth2Client } = require("google-auth-library");
 // midtrans
 const midtransClient = require("midtrans-client");
-
+// nodemailer
+const nodemailer = require("nodemailer");
 class Controllers {
   // login
   static async login(req, res, next) {
@@ -37,9 +38,31 @@ class Controllers {
   // register
   static async register(req, res, next) {
     try {
+      // nodemailer
+      // const sending = nodemailer.createTransport({
+      //   host: "smtp-relay.brevo.com",
+      //   port: 587,
+      //   // secure: false, // upgrade later with STARTTLS
+      //   auth: {
+      //     user: process.env.EMAIL_NODEMAILER,
+      //     pass: process.env.PASSWORD_NODEMAILER,
+      //   },
+      // });
+
       const { username, email, password } = req.body;
-      console.log(username, email, password);
+      // console.log(username, email, password);
+      if (!email) throw { name: "invalidEmail" };
+      if (!password) throw { name: "invalidPassword" };
       const user = await User.create({ username, email, password });
+
+      // nodemailer
+      // await sending.sendMail({
+      //   from: "royale-lite.com",
+      //   to: email,
+      //   subject: "Welocme Royales",
+      //   text: "Plaintext version of the message",
+      //   html: "<p>HTML version of the message</p>",
+      // });
 
       res.status(201).json({ user });
     } catch (error) {
@@ -100,11 +123,19 @@ class Controllers {
       const { id } = req.params;
       console.log(id);
 
+      const card = await Card.findOne({
+        where: {
+          id: id,
+        },
+      });
+      if (!card) throw { name: "notFound" };
+
       await Card.destroy({
         where: {
           id: id,
         },
       });
+
       res.status(200).json({ message: `card with id: ${id}, has been removed` });
     } catch (error) {
       console.log(error);
@@ -128,7 +159,7 @@ class Controllers {
 
       res.status(200).json(user);
     } catch (error) {
-      console.log(error);
+      console.log(error, "<<<<<<<<<<<>>>>>>>>>>>>>>>>>><<<<<<<<<<>>>>>>>>");
       next(error);
     }
   }
@@ -200,7 +231,7 @@ class Controllers {
           userId: req.user.id,
         },
       });
-      console.log(order);
+      // console.log(order);
 
       res.status(200).json(order);
     } catch (error) {
@@ -219,7 +250,7 @@ class Controllers {
       if (!listCoin) throw { name: "notFound" };
       // console.log(req.user.id, "<>>>>>>>>>>>>");
       const order = await Order.create({ coinId, userId: req.user.id });
-      console.log(order);
+      // console.log(order);
 
       res.status(201).json(order);
     } catch (error) {
@@ -243,8 +274,7 @@ class Controllers {
   static async updateUser(req, res, next) {
     try {
       console.log("masuk <<<<<<<<<<");
-      const user = await User.findByPk(req.user.id);
-      if (!user) throw { name: "notFound" };
+      await User.findByPk(req.user.id);
 
       const { username } = req.body;
       // console.log(username, email, password);
@@ -256,7 +286,7 @@ class Controllers {
           },
         }
       );
-      console.log(updateUser);
+      // console.log(updateUser);
 
       res.status(201).json({ message: "user successfull updated" });
     } catch (error) {
@@ -384,7 +414,7 @@ class Controllers {
       // console.log(ticket.payload);
 
       const { email, sub } = ticket.payload;
-      console.log(email, sub);
+      // console.log(email, sub);
       let user = await User.findOne({
         where: { email },
       });

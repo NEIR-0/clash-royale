@@ -80,7 +80,7 @@ module.exports = {
 
     // filter fulldata have img
     const fullData = datas.filter((el) => el.imgUrl);
-    // console.log(fullData)
+    // console.log(fullData);
 
     await queryInterface.bulkInsert("Cards", fullData);
   },
