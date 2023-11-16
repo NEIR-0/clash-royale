@@ -69,7 +69,11 @@ function Login() {
         <div className="absolute top-5 right-5">
           <button
             onClick={handleThame}
-            className={theme === "light" ? "px-10 py-2 bg-cyan-300 text-white rounded-full duration-300 ease-in-out transition-all" : "px-10 py-2 bg-blue-500 text-black rounded-full duration-300 ease-in-out transition-all"}
+            className={
+              theme === "light"
+                ? "bg-cyan-300 text-white rounded-full duration-300 ease-in-out transition-all px-4 py-2 md:px-10 md:py-2"
+                : "bg-blue-500 text-black rounded-full duration-300 ease-in-out transition-all px-4 py-2 md:px-10 md:py-2"
+            }
           >
             {theme === "light" ? <i class="fa-solid fa-sun"></i> : <i class="fa-solid fa-moon"></i>}
           </button>
@@ -79,12 +83,12 @@ function Login() {
           onSubmit={submitForm}
           className={
             theme === "light"
-              ? "w-[400px] h-[500px] bg-stone-50 shadow-lg flex flex-col justify-evenly items-center rounded-lg duration-300 ease-in-out transition-all"
-              : "w-[400px] h-[500px] bg-slate-400 shadow-lg flex flex-col justify-evenly items-center rounded-lg duration-300 ease-in-out transition-all"
+              ? "bg-stone-50 shadow-lg flex flex-col justify-evenly items-center rounded-lg duration-300 ease-in-out transition-all w-[300px] h-[450px] md:w-[400px] md:h-[500px]"
+              : "bg-slate-400 shadow-lg flex flex-col justify-evenly items-center rounded-lg duration-300 ease-in-out transition-all w-[300px] h-[450px] md:w-[400px] md:h-[500px]"
           }
         >
           <div className="">
-            <img src={logo} alt="barbarian-kings" className="w-28" />
+            <img src={logo} alt="barbarian-kings" className="w-20 md:w-28" />
           </div>
           {/* email */}
           <div className="">
@@ -92,7 +96,7 @@ function Login() {
               Email
             </label>
             <br />
-            <input onChange={inputUser} type="text" name="email" className="outline-none rounded-md border border-stone-500 px-3 py-1 mt-2" />
+            <input onChange={inputUser} type="text" name="email" className="outline-none rounded-md border border-stone-500 md:px-3 md:py-1 md:mt-2" />
           </div>
           {/* password */}
           <div className="">
@@ -100,14 +104,13 @@ function Login() {
               Password
             </label>
             <br />
-            <input onChange={inputUser} type="text" name="password" className="outline-none rounded-md border border-stone-500 px-3 py-1 mt-2" />
+            <input onChange={inputUser} type="text" name="password" className="outline-none rounded-md border border-stone-500 md:px-3 md:py-1 md:mt-2" />
           </div>
           <button
-            // className="px-10 py-3 bg-cyan-300 rounded-lg text-white duration-300 ease-in-out transition-all hover:bg-cyan-400 hover:text-stone-500"
             className={
               theme === "light"
-                ? "px-10 py-3 bg-cyan-300 rounded-lg text-white duration-300 ease-in-out transition-all hover:bg-cyan-400 hover:text-stone-500"
-                : "px-10 py-3 bg-blue-500 rounded-lg text-black duration-300 ease-in-out transition-all hover:bg-blue-400 hover:text-white"
+                ? "bg-cyan-300 rounded-lg text-white duration-300 ease-in-out transition-all hover:bg-cyan-400 hover:text-stone-500 px-6 py-2 md:px-10 md:py-3"
+                : "bg-blue-500 rounded-lg text-black duration-300 ease-in-out transition-all hover:bg-blue-400 hover:text-white px-6 py-2 md:px-10 md:py-3"
             }
           >
             submit
