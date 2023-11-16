@@ -5,7 +5,7 @@ const { OAuth2Client } = require("google-auth-library");
 // midtrans
 const midtransClient = require("midtrans-client");
 // nodemailer
-const nodemailer = require("nodemailer");
+const { createTransport } = require("nodemailer");
 class Controllers {
   // login
   static async login(req, res, next) {
@@ -39,15 +39,15 @@ class Controllers {
   static async register(req, res, next) {
     try {
       // nodemailer
-      // const sending = nodemailer.createTransport({
-      //   host: "smtp-relay.brevo.com",
-      //   port: 587,
-      //   // secure: false, // upgrade later with STARTTLS
-      //   auth: {
-      //     user: process.env.EMAIL_NODEMAILER,
-      //     pass: process.env.PASSWORD_NODEMAILER,
-      //   },
-      // });
+      const sending = createTransport({
+        host: "smtp-relay.brevo.com",
+        port: 587,
+        // secure: false, // upgrade later with STARTTLS
+        auth: {
+          user: process.env.EMAIL_NODEMAILER,
+          pass: process.env.PASSWORD_NODEMAILER,
+        },
+      });
 
       const { username, email, password } = req.body;
       // console.log(username, email, password);
@@ -55,14 +55,14 @@ class Controllers {
       if (!password) throw { name: "invalidPassword" };
       const user = await User.create({ username, email, password });
 
-      // nodemailer
-      // await sending.sendMail({
-      //   from: "royale-lite.com",
-      //   to: email,
-      //   subject: "Welocme Royales",
-      //   text: "Plaintext version of the message",
-      //   html: "<p>HTML version of the message</p>",
-      // });
+      // nodemailer;
+      await sending.sendMail({
+        from: "royale-lite@gmail.com",
+        to: email,
+        subject: "Welocme Royales",
+        text: "Plaintext version of the message",
+        html: "<p>HTML version of the message</p>",
+      });
 
       res.status(201).json({ user });
     } catch (error) {

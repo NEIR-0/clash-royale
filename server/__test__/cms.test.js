@@ -788,7 +788,7 @@ describe("GET /orders", () => {
 
 // aneh
 describe("Post /orders/:coinId", () => {
-  test.only("post orders by id", async () => {
+  test("post orders by id", async () => {
     const user = {
       email: "admin@gmail.com",
       password: "admin",
