@@ -13,6 +13,9 @@ import MainFeatures from "./views/mainFeatures";
 import Admin from "./views/admin";
 import ChangeUser from "./views/changeUser";
 
+// google
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
 const auth = () => {
   if (!localStorage.token) {
     return redirect("/login");
@@ -70,6 +73,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <GoogleOAuthProvider clientId="56194176726-t64gmqi99vsf02in6fsjqaqg0vnuiq97.apps.googleusercontent.com">
+      <RouterProvider router={router} />
+    </GoogleOAuthProvider>
   </React.StrictMode>
 );

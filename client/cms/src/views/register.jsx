@@ -62,6 +62,7 @@ function Register() {
             <input onChange={inputUser} type="text" name="password" className="outline-none rounded-md border border-stone-500 px-3 py-1 mt-2" />
           </div>
           <button className="px-10 py-3 bg-cyan-300 rounded-lg text-white duration-300 ease-in-out transition-all hover:bg-cyan-400 hover:text-stone-500">submit</button>
+          <Link to="/login">Login</Link>
         </form>
       </section>
     </>
