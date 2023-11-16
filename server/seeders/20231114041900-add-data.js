@@ -1,10 +1,11 @@
 "use strict";
 
-const e = require("cors");
+require("dotenv").config();
+
 /** @type {import('sequelize-cli').Migration} */
 
 const { hashing } = require("../helper/bycryptjs");
-
+const axios = require("axios");
 module.exports = {
   async up(queryInterface, Sequelize) {
     const admin = [
@@ -26,7 +27,9 @@ module.exports = {
     });
     await queryInterface.bulkInsert("Coins", coin);
 
-    const cards = require("../data/dataCOR.json").map((el) => {
+    const listCard = await axios.get("https://royaleapi.github.io/cr-api-data/json/cards.json");
+    // console.log(listCard.data);
+    const cards = listCard.data.map((el) => {
       delete el.key;
       delete el.sc_key;
       delete el.arena;
@@ -50,9 +53,14 @@ module.exports = {
       el.updatedAt = new Date();
       return el;
     });
-    // console.log(cards);
 
-    const imgUrl = require("../data/apicr.json");
+    const listImgUrl = await axios.get("https://api.clashroyale.com/v1/cards", {
+      headers: {
+        Authorization: "Bearer " + process.env.KEY_CLASH_ROYALE_API,
+        "Content-Type": "application/json",
+      },
+    });
+    const imgUrl = listImgUrl.data;
     imgUrl.items.map((el) => {
       delete el.id;
       delete el.maxLevel;
