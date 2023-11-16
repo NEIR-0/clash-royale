@@ -18,3 +18,10 @@ html {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+@media all and (max-width: 670px) {
+  .bgHome {
+    background-size: cover;
+    background-position: center;
+  }
+}

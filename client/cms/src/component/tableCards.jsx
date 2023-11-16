@@ -20,7 +20,7 @@ function TableCards({ data, deleteId }) {
             onClick={() => {
               deleteId(data.id);
             }}
-            className="bg-red-500 px-4 py-2 text-white"
+            className="bg-red-500 rounded-full px-4 py-2 text-white"
           >
             delete
           </button>

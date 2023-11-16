@@ -23,18 +23,14 @@ function Card({ data, option }) {
               elixir: <span>{data && data.elixir}</span>
             </p>
             <p>
-              arena: <span>{data && data.cardPrice}</span>
+              cardPrice: <span>{data && data.cardPrice}</span>
             </p>
           </div>
         </div>
         <div className="flex justify-center items-center">
-          {option === false ? (
-            <button className="px-10 py-2 bg-slate-400 rounded-lg">Detail</button>
-          ) : (
-            <Link to={option} className="px-10 py-2 bg-slate-400 rounded-lg">
-              buy now
-            </Link>
-          )}
+          <Link to={option} className="px-10 py-2 bg-slate-400 rounded-lg">
+            buy now
+          </Link>
         </div>
       </section>
     </>

@@ -53,7 +53,7 @@ function ChangeUser() {
       });
       // console.log(data);
 
-      navigate("/mainpages");
+      navigate("/mainpages/user");
     } catch (error) {
       console.log(error);
     }
@@ -62,15 +62,17 @@ function ChangeUser() {
   return (
     <>
       <section className="w-full h-screen flex justify-center items-center">
-        <form onSubmit={submitForm} className="w-[400px] h-[300px] bg-stone-50 shadow-lg flex flex-col justify-evenly items-center rounded-lg">
-          <h1 className="text-[30px]">what i can call your sir~</h1>
+        <form onSubmit={submitForm} className="w-[300px] h-fit bg-stone-50 shadow-lg flex flex-col justify-evenly items-center rounded-lg p-10 md:w-[400px] md:h-[300px]">
+          <h1 className="text-[20px] mb-7 text-center md:text-[30px]">what i can call your sir~</h1>
           {/* username */}
-          <div className="">
-            <label htmlFor="username">Username</label>
+          <div className="mb-7">
+            <label htmlFor="username" className="text-[15px] md:text-base">
+              Username
+            </label>
             <br />
             <input value={form.username} onChange={inputUser} type="text" name="username" className="outline-none rounded-md border border-stone-500 px-3 py-1 mt-2" />
           </div>
-          <button className="px-10 py-3 bg-cyan-300 rounded-lg text-white duration-300 ease-in-out transition-all hover:bg-cyan-400 hover:text-stone-500">submit</button>
+          <button className="px-8 py-2 bg-cyan-300 rounded-lg text-white duration-300 ease-in-out transition-all hover:bg-cyan-400 hover:text-stone-500 md:px-10 md:py-3">submit</button>
         </form>
       </section>
     </>

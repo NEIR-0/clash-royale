@@ -2,11 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../public/logo.png";
 
-function CardMarket({ data, option }) {
+function CardDetail({ data, option }) {
+  //   console.log(option);
   return (
     <>
       <section className="w-[300px] m-2 h-fit bg-white shadow-md flex flex-col border border-stone-600 p-5 rounded-md">
-        <img src={data && data.imgUrl} className="m-auto w-[200px] rounded-md mb-5" />
+        <img src={data && data.imgUrl} className="m-auto w-[200px]  rounded-md mb-5" />
         <h1 className="text-center text-lg font-bold mb-3">{data && data.name}</h1>
         <div className="flex justify-around mb-5">
           <div className="">
@@ -33,7 +34,7 @@ function CardMarket({ data, option }) {
             }}
             className="px-10 py-2 bg-slate-400 rounded-lg"
           >
-            Buy
+            detail card
           </button>
         </div>
       </section>
@@ -41,4 +42,4 @@ function CardMarket({ data, option }) {
   );
 }
 
-export default CardMarket;
+export default CardDetail;

@@ -48,9 +48,9 @@ function Admin() {
     <>
       <section className="w-full h-fit pt-12">
         <button onClick={back} className="px-10 py-2 rounded-md ms-10 my-10 bg-red-400 text-white">
-          back
+          Back
         </button>
-        <div class="relative overflow-x-auto mx-3">
+        <div class="hidden md:block relative overflow-x-auto mx-3">
           <table class="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
               <tr>
@@ -91,6 +91,9 @@ function Admin() {
             </tbody>
           </table>
         </div>
+
+        <h1 className="text-center text-[25px]">Please use a larger device</h1>
+        <h1 className="text-center text-[25px]">To go inside Admin mode</h1>
       </section>
     </>
   );
