@@ -15,6 +15,9 @@ import ChangeUser from "./views/changeUser";
 
 // google
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import CoverLogin from "./context/coverLogin";
+import CoverRegister from "./context/coverRegister";
+// import TestAppContext from "./context/test";
 
 const auth = () => {
   if (!localStorage.token) {
@@ -30,11 +33,14 @@ const router = createBrowserRouter([
     children: [
       {
         path: "login",
-        element: <Login />,
+        // element: <Login />,
+        element: <CoverLogin />,
       },
       {
         path: "register",
-        element: <Register />,
+        // element: <Register />,
+        element: <CoverRegister />,
+
       },
       {
         path: "mainpages",
@@ -67,6 +73,10 @@ const router = createBrowserRouter([
           },
         ],
       },
+      // {
+      //   path: "test",
+      //   element: <TestAppContext />,
+      // },
     ],
   },
 ]);
