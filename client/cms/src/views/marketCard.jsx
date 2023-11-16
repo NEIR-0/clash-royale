@@ -8,15 +8,20 @@ import Swal from "sweetalert2";
 
 function MarketCard() {
   const [card, setCard] = useState();
+  const [search, setSearch] = useState("");
+  // console.log(directios);
   useEffect(() => {
     dataCard();
-  }, []);
+  }, [search]);
 
   const dataCard = async (e) => {
     try {
       const { data } = await axios.get(local + "market", {
         headers: {
           Authorization: "Bearer " + localStorage.token,
+        },
+        params: {
+          filter: search,
         },
       });
       // console.log(data);
@@ -26,6 +31,12 @@ function MarketCard() {
     }
   };
   // console.log(card);
+
+  const searching = (e) => {
+    const { value } = e.target;
+    setSearch(value);
+  };
+  // console.log(search);
 
   const addCard = async (id) => {
     // console.log("click", id);
@@ -53,15 +64,19 @@ function MarketCard() {
       });
     }
   };
+
   return (
     <>
       <section className="w-full h-fit p-10">
         <h1 className="text-center text-[60px] font-bold">Market Cards</h1>
         <p className="text-center tetx-[20px] font-light">lets collect as much as you can!</p>
+        <div className="search w-full flex justify-center items-center">
+          <input onChange={searching} type="text" placeholder="Search the character.." className="bg-red-400 rounded-lg px-5 w-[70%] h-[50px] mt-5" />
+        </div>
         <div className="justify-center flex flex-wrap mt-5">
           {card &&
             card.map((el) => {
-              return <CardMarket data={el} option={addCard} />;
+              return <CardMarket key={el.id} data={el} option={addCard} />;
             })}
         </div>
       </section>
