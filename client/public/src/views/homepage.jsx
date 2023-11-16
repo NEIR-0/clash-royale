@@ -24,7 +24,7 @@ function Homepage() {
           <Canvas
             camera={{
               fov: 50,
-              position: [0, 2, 10],
+              position: [10, 2, 10],
             }}
           >
             <Mesh />

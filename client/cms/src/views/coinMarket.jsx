@@ -53,9 +53,9 @@ function CoinMarket() {
 
   return (
     <>
-      <section className="w-full h-fit p-10">
-        <h1 className="text-center text-[60px] font-bold">Market Cards</h1>
-        <p className="text-center tetx-[20px] font-light">lets collect as much as you can!</p>
+      <section className="w-full h-fit pt-14">
+        <h1 className="text-center text-[30px] font-bold md:text-[60px]">Market Cards</h1>
+        <p className="text-center text-[20px] font-light">lets collect as much as you can!</p>
         <div className="justify-center flex flex-wrap mt-5">
           {coin &&
             coin.map((el) => {
