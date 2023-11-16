@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 .bgimg {
   background-image: url(https://images8.alphacoders.com/855/855975.jpg);
   background-size: cover;
@@ -12,4 +16,15 @@
   background-image: url(https://images6.alphacoders.com/855/855977.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+@media all and (max-width: 670px) {
+  .bgimg {
+    background-size: cover;
+    background-position: center;
+  }
+  .bglogin {
+    background-size: cover;
+    background-position: center;
+  }
 }
