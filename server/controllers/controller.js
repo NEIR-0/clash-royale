@@ -6,6 +6,7 @@ const { OAuth2Client } = require("google-auth-library");
 const midtransClient = require("midtrans-client");
 // nodemailer
 const { createTransport } = require("nodemailer");
+const { Op, where } = require("sequelize");
 class Controllers {
   // login
   static async login(req, res, next) {
@@ -89,7 +90,20 @@ class Controllers {
   // market
   static async market(req, res, next) {
     try {
-      const card = await Card.findAll();
+      const { filter } = req.query;
+      // console.log(filter);
+
+      let option = {
+        where: {},
+      };
+
+      if (filter) {
+        option.where.name = {
+          [Op.iLike]: `%${filter}%`,
+        };
+      }
+      // const card = await Card.findAll(option);
+      const card = await Card.findAll(option);
 
       res.status(200).json(card);
     } catch (error) {
