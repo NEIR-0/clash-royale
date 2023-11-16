@@ -6,6 +6,7 @@ import Footer from "../component/footer";
 import { useEffect } from "react";
 import axios from "axios";
 import { local } from "../routers/constanst";
+import Swal from "sweetalert2";
 
 function HomePage() {
   const [card, setCard] = useState();
@@ -24,6 +25,11 @@ function HomePage() {
       setCard(data);
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops",
+        text: error.response.data.message,
+      });
     }
   };
   // console.log(card);

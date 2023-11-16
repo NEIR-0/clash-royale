@@ -6,6 +6,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 // context
 import { useTheme } from "../context/darkLightMode";
+import Swal from "sweetalert2";
 
 function Register() {
   const navigate = useNavigate();
@@ -30,9 +31,19 @@ function Register() {
       const { data } = await axios.post(local + "register", form);
       console.log(data);
 
+      Swal.fire({
+        icon: "success",
+        title: "succes to register",
+        text: "please continue to sign in",
+      });
       navigate("/login");
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops",
+        text: error.response.data.message,
+      });
     }
   };
 

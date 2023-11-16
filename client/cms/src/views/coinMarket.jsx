@@ -22,6 +22,11 @@ function CoinMarket() {
       setCoin(data);
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops",
+        text: error.response.data.message,
+      });
     }
   };
   //   console.log(coin);
@@ -44,10 +49,20 @@ function CoinMarket() {
           Authorization: "Bearer " + localStorage.token,
         },
       });
-      console.log(data);
+      // console.log(data);
+      Swal.fire({
+        icon: "success",
+        title: "succes add your order",
+        text: "you are one step closer to becoming a master card",
+      });
       window.snap.pay(data.token);
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops",
+        text: error.response.data.message,
+      });
     }
   };
 

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import logo from "../../public/logo.png";
 import { local } from "../routers/constanst";
 function ChangeUser() {
@@ -32,6 +33,11 @@ function ChangeUser() {
       });
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops",
+        text: error.response.data.message,
+      });
     }
   };
 
@@ -46,16 +52,26 @@ function ChangeUser() {
   const submitForm = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(local + "users", form, {
+      const { data } = await axios.put(local + "users", form, {
         headers: {
           Authorization: "Bearer " + localStorage.token,
         },
       });
       // console.log(data);
+      Swal.fire({
+        icon: "success",
+        title: "update user detail",
+        text: data.message,
+      });
 
       navigate("/mainpages/user");
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops",
+        text: error.response.data.message,
+      });
     }
   };
   console.log(form);

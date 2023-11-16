@@ -28,6 +28,11 @@ function MarketCard() {
       setCard(data);
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops",
+        text: error.response.data.message,
+      });
     }
   };
   // console.log(card);
@@ -53,7 +58,7 @@ function MarketCard() {
       Swal.fire({
         icon: "success",
         title: "succes add card to inventory",
-        text: "you are one step closer to becoming a master card ",
+        text: "you are one step closer to becoming a master card",
       });
     } catch (error) {
       console.log(error);
