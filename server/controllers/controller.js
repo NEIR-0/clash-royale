@@ -1,7 +1,7 @@
 const { Card, User, Inventory, Coin, Order } = require("../models");
 const { hashing, compare } = require("../helper/bycryptjs");
 const { createToken, verifyToken } = require("../helper/jwt");
-
+const { OAuth2Client } = require("google-auth-library");
 // midtrans
 const midtransClient = require("midtrans-client");
 
@@ -363,6 +363,48 @@ class Controllers {
       }
 
       res.sendStatus(200);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  // googleLogin
+  static async googleLogin(req, res, next) {
+    // console.log(req.body.data);
+    const { googletoken } = req.body.data;
+    // console.log(googletoken);
+    // console.log(process.env.GOOGLE_CLIENT_ID);
+    try {
+      const client = new OAuth2Client();
+      const ticket = await client.verifyIdToken({
+        idToken: googletoken,
+        audience: process.env.GOOGLE_CLIENT_ID,
+      });
+      // console.log(ticket.payload);
+
+      const { email, sub } = ticket.payload;
+      console.log(email, sub);
+      let user = await User.findOne({
+        where: { email },
+      });
+      if (!user) {
+        user = await User.create(
+          {
+            username: sub,
+            email,
+            password: sub + new Date(),
+          },
+          {
+            hooks: false,
+          }
+        );
+        // console.log(user);
+      }
+
+      const token = createToken({ id: user.id });
+      // console.log(token);
+      res.status(200).json({ token });
     } catch (error) {
       console.log(error);
       next(error);
