@@ -7,6 +7,7 @@ import { GoogleLogin } from "@react-oauth/google";
 
 // context
 import { useTheme } from "../context/darkLightMode";
+import Swal from "sweetalert2";
 
 function Login() {
   const navigate = useNavigate();
@@ -27,13 +28,18 @@ function Login() {
     e.preventDefault();
     try {
       const { data } = await axios.post(local + "login", form);
+      console.log(data);
 
       localStorage.token = data.token;
       // console.log(data);
-
       navigate("/mainpages");
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops",
+        text: error.response.data.message,
+      });
     }
   };
   // console.log(form);
@@ -52,6 +58,11 @@ function Login() {
       navigate("/mainpages");
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops",
+        text: error.response.data.message,
+      });
     }
   }
 

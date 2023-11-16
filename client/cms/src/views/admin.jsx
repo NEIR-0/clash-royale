@@ -23,20 +23,36 @@ function Admin() {
       setCard(data);
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops",
+        text: error.response.data.message,
+      });
     }
   };
 
   const deleteCards = async (id) => {
     try {
       //   console.log("masuk >", id);
-      await axios.delete(local + `delete/${id}`, {
+      const { data } = await axios.delete(local + `delete/${id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.token,
         },
       });
+
+      Swal.fire({
+        icon: "success",
+        title: "succes deleted card",
+        text: data.message,
+      });
       dataCard();
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops",
+        text: error.response.data.message,
+      });
     }
   };
 

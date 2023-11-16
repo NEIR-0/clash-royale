@@ -7,6 +7,7 @@ import logo from "../../public/logo.png";
 import coin from "../../public/coin.png";
 import Card from "../component/cardHome";
 import CardDetail from "../component/cardDetail";
+import Swal from "sweetalert2";
 
 function User() {
   const naviagate = useNavigate();
@@ -31,6 +32,11 @@ function User() {
       setUser(data);
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops",
+        text: error.response.data.message,
+      });
     }
   };
 
@@ -45,6 +51,11 @@ function User() {
       setInventory(data.Cards);
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops",
+        text: error.response.data.message,
+      });
     }
   };
   // console.log(inventory);
@@ -74,6 +85,11 @@ function User() {
       setDetailCard(data);
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops",
+        text: error.response.data.message,
+      });
     }
   };
 

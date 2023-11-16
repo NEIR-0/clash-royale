@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import logo from "../../public/logo.png";
 import { local } from "../routers/constanst";
 
