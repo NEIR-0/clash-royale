@@ -352,13 +352,16 @@ class Controllers {
     try {
       // console.log(req.body);
       const { transaction_status, fraud_status, order_id } = req.body;
+
+      const orderId = order_id.split("-")[0];
+
       const successProcess = async () => {
         try {
           const order = await Order.update(
             { status: true },
             {
               where: {
-                id: order_id,
+                id: orderId,
               },
               returning: true,
             }
