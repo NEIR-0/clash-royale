@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../public/logo.png";
 
 function Card({ data, option }) {
   console.log(option);
   return (
     <>
-      <section className="w-[300px] m-2 h-fit bg-white shadow-md flex flex-col border border-stone-600 p-5 rounded-md">
-        <img src={data && data.imgUrl} className="m-auto w-[200px]  rounded-md mb-5" />
+      <section className="w-[300px] m-2 h-fit bg-white shadow-md flex flex-col border border-stone-600 p-5 rounded-md duration-300 ease-in-out transition-all group hover:scale-105">
+        <img src={data && data.imgUrl} className="m-auto w-[200px] rounded-md mb-5 duration-300 ease-in-out transition-all group-hover:scale-95" />
         <h1 className="text-center text-lg font-bold mb-3">{data && data.name}</h1>
         <div className="flex justify-around mb-5">
           <div className="">
@@ -28,7 +28,7 @@ function Card({ data, option }) {
           </div>
         </div>
         <div className="flex justify-center items-center">
-          <Link to={option} className="px-10 py-2 bg-slate-400 rounded-lg">
+          <Link to={option} className="px-10 py-2 bg-slate-400 rounded-lg duration-200 ease-in-out transition-all hover:bg-slate-800 hover:text-white">
             buy now
           </Link>
         </div>

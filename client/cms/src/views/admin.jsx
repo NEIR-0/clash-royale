@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { local, publicSite } from "../routers/constanst";
 import TableCards from "../component/tableCards";
+import Swal from "sweetalert2";
 
 function Admin() {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ function Admin() {
   const deleteCards = async (id) => {
     try {
       //   console.log("masuk >", id);
-      const { data } = await axios.delete(publicSite + `delete/${id}`, {
+      await axios.delete(publicSite + `delete/${id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.token,
         },
@@ -43,7 +44,6 @@ function Admin() {
       Swal.fire({
         icon: "success",
         title: "succes deleted card",
-        text: data.message,
       });
       dataCard();
     } catch (error) {

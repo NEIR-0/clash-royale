@@ -93,6 +93,11 @@ function User() {
     }
   };
 
+  const closeDetail = () => {
+    // console.log("masuk >>>>>>");
+    setDetail((last) => (last === false ? true : false));
+  };
+
   console.log(detailCard);
   return (
     <>
@@ -114,10 +119,10 @@ function User() {
             </h1>
           </div>
           <div className="hidden md:block absolute right-6 top-1/2 -translate-y-1/2">
-            <button onClick={changeUser} className="px-10 py-2 bg-white rounded-md me-5">
+            <button onClick={changeUser} className="px-10 py-2 bg-white rounded-md duration-300 ease-in-out transition-all hover:bg-cyan-400 hover:text-white me-5">
               Change
             </button>
-            <button onClick={logOut} className="px-10 py-2 bg-white rounded-md">
+            <button onClick={logOut} className="px-10 py-2 bg-white rounded-md duration-300 ease-in-out transition-all hover:bg-cyan-400 hover:text-white">
               Log out
             </button>
           </div>
@@ -143,7 +148,7 @@ function User() {
         )}
 
         {user && user.role === "admin" ? (
-          <button onClick={changeAdmin} className="hidden md:block px-10 py-3 bg-cyan-300 text-white rounded-md ms-10 mb-10">
+          <button onClick={changeAdmin} className="hidden md:block px-10 py-3 bg-cyan-300 text-white rounded-md ms-10 mb-10 duration-300 ease-in-out transition-all hover:bg-cyan-400 hover:text-slate-700">
             admin site
           </button>
         ) : (
@@ -161,8 +166,8 @@ function User() {
         {detail === true ? (
           <div className="w-full h-screen fixed left-0 top-0 pt-14 flex justify-center items-center backdrop-blur-sm ">
             <div className="w-[350px] h-fit p-5 bg-stone-300 rounded-lg relative md:w-[400px]">
-              <button onClick={showDetail} className="absolute right-5 top-3 w-7 h-7 bg-white rounded-full flex justify-center">
-                <h1>x</h1>
+              <button onClick={closeDetail} className="absolute right-5 top-3 w-7 h-7 bg-white rounded-full flex justify-center duration-300 ease-in-out transition-all hover:bg-black group">
+                <h1 className="duration-300 ease-in-out transition-all group-hover:text-white">x</h1>
               </button>
               <img src={detailCard && detailCard.imgUrl} className="m-auto w-[200px] rounded-md mb-5" />
               <h1 className="text-center text-lg font-bold mb-3 underline">{detailCard && detailCard.name}</h1>

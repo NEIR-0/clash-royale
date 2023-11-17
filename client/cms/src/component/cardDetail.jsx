@@ -6,7 +6,7 @@ function CardDetail({ data, option }) {
   //   console.log(option);
   return (
     <>
-      <section className="w-[300px] m-2 h-fit bg-white shadow-md flex flex-col border border-stone-600 p-5 rounded-md">
+      <section className="w-[300px] m-2 h-fit bg-white shadow-md flex flex-col border border-stone-600 p-5 rounded-md duration-300 ease-in-out transition-all group hover:scale-105">
         <img src={data && data.imgUrl} className="m-auto w-[200px]  rounded-md mb-5" />
         <h1 className="text-center text-lg font-bold mb-3">{data && data.name}</h1>
         <div className="flex justify-around mb-5">
@@ -32,7 +32,7 @@ function CardDetail({ data, option }) {
             onClick={() => {
               option(data.id);
             }}
-            className="px-10 py-2 bg-slate-400 rounded-lg"
+            className="px-10 py-2 bg-slate-400 rounded-lg duration-200 ease-in-out transition-all hover:bg-slate-800 hover:text-white"
           >
             detail card
           </button>

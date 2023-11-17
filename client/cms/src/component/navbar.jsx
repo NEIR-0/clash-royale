@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../public/logo.png";
 import { local } from "../routers/constanst";
 
 function Navbar() {
+  const { pathname } = useLocation();
+  console.log(pathname, ">>>>>>>>>>>>>");
   return (
     <>
       <section className="fixed w-full h-12 bg-slate-50 px-5 shadow-md flex justify-between z-10">
@@ -15,9 +17,37 @@ function Navbar() {
         </div>
 
         <div className="w-[200px] flex justify-evenly items-center">
-          <Link to="/mainpages">home</Link>
-          <Link to="/mainpages/marketCard">market</Link>
-          <Link to="/mainpages/marketCoin">coin</Link>
+          <Link
+            to="/mainpages"
+            // className="duration-200 ease-in-out transition-all px-4 p-3 hover:bg-cyan-400 hover:text-white"
+            className={
+              pathname === "/mainpages" ? "bg-cyan-400 text-white duration-200 ease-in-out transition-all px-4 p-3 hover:bg-cyan-400 hover:text-white" : "duration-200 ease-in-out transition-all px-4 p-3 hover:bg-cyan-400 hover:text-white"
+            }
+          >
+            home
+          </Link>
+          <Link
+            to="/mainpages/marketCard"
+            // className="duration-200 ease-in-out transition-all px-4 p-3 hover:bg-cyan-400 hover:text-white"
+            className={
+              pathname === "/mainpages/marketCard"
+                ? "bg-cyan-400 text-white duration-200 ease-in-out transition-all px-4 p-3 hover:bg-cyan-400 hover:text-white"
+                : "duration-200 ease-in-out transition-all px-4 p-3 hover:bg-cyan-400 hover:text-white"
+            }
+          >
+            market
+          </Link>
+          <Link
+            to="/mainpages/marketCoin"
+            // className="duration-200 ease-in-out transition-all px-4 p-3 hover:bg-cyan-400 hover:text-white"
+            className={
+              pathname === "/mainpages/marketCoin"
+                ? "bg-cyan-400 text-white duration-200 ease-in-out transition-all px-4 p-3 hover:bg-cyan-400 hover:text-white"
+                : "duration-200 ease-in-out transition-all px-4 p-3 hover:bg-cyan-400 hover:text-white"
+            }
+          >
+            coin
+          </Link>
         </div>
 
         <div className="h-12 w-12 flex justify-center items-center">
