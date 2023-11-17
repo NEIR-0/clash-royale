@@ -352,9 +352,9 @@ class Controllers {
     try {
       // console.log(req.body);
       const { transaction_status, fraud_status, order_id } = req.body;
-
+      console.log(transaction_status, fraud_status, order_id, "<<<<<<<<<<<<<<<<<<<<<<<<<<");
       const orderId = order_id.split("-")[0];
-
+      console.log(orderId, ">>>>>>>>>>>>>>>>");
       const successProcess = async () => {
         try {
           const order = await Order.update(
