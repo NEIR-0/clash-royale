@@ -32,7 +32,7 @@ function Homepage() {
         </div>
         <div className="w-full h-screen bg-yellow-400 bglogin relative">
           <div className="absolute w-full h-full backdrop-blur-[1px] flex justify-center items-center">
-            <a href="https://cms-royale.web.app/login" className="absolute ">
+            <a href="https://cms-royales.nier-zero.my.id/login" className="absolute ">
               <button id="login" className="px-9 py-6 bg-white rounded-lg text-[20px] z-10 duration-200 ease-in-out transition-all font-bold hover:shadow-xl hover:bg-red-500 hover:text-white">
                 Call The Adnventurer
               </button>
