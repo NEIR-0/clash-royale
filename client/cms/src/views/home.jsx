@@ -16,7 +16,7 @@ function HomePage() {
 
   const dataCard = async (e) => {
     try {
-      const { data } = await axios.get(local, {
+      const { data } = await axios.get(publicSite, {
         headers: {
           Authorization: "Bearer " + localStorage.token,
         },

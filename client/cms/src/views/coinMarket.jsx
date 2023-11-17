@@ -13,7 +13,7 @@ function CoinMarket() {
 
   const dataCoin = async () => {
     try {
-      const { data } = await axios.get(local + "coins", {
+      const { data } = await axios.get(publicSite + "coins", {
         headers: {
           Authorization: "Bearer " + localStorage.token,
         },
@@ -34,7 +34,7 @@ function CoinMarket() {
   const handlepayment = async (id) => {
     try {
       await axios.post(
-        local + `orders/${id}`,
+        publicSite + `orders/${id}`,
         {},
         {
           headers: {
@@ -44,7 +44,7 @@ function CoinMarket() {
       );
       // console.log(data);
 
-      const { data } = await axios.get(local + "payment/midtrans/token", {
+      const { data } = await axios.get(publicSite + "payment/midtrans/token", {
         headers: {
           Authorization: "Bearer " + localStorage.token,
         },

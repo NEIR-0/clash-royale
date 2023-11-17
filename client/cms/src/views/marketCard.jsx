@@ -16,7 +16,7 @@ function MarketCard() {
 
   const dataCard = async (e) => {
     try {
-      const { data } = await axios.get(local + "market", {
+      const { data } = await axios.get(publicSite + "market", {
         headers: {
           Authorization: "Bearer " + localStorage.token,
         },
@@ -47,7 +47,7 @@ function MarketCard() {
     // console.log("click", id);
     try {
       await axios.post(
-        local + `inventory/${id}`,
+        publicSite + `inventory/${id}`,
         {},
         {
           headers: {

@@ -27,7 +27,7 @@ function Login() {
   const submitForm = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(local + "login", form);
+      const { data } = await axios.post(publicSite + "login", form);
       console.log(data);
 
       localStorage.token = data.token;
@@ -48,7 +48,7 @@ function Login() {
   async function handleCredentialResponse(params) {
     try {
       // console.log("masuk <<<<");
-      const { data } = await axios.post(local + "googleLogin", {
+      const { data } = await axios.post(publicSite + "googleLogin", {
         data: {
           googletoken: params.credential,
         },

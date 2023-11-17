@@ -28,7 +28,7 @@ function Register() {
     e.preventDefault();
     try {
       console.log("masuk <<<<<");
-      const { data } = await axios.post(local + "register", form);
+      const { data } = await axios.post(publicSite + "register", form);
       console.log(data);
 
       Swal.fire({

@@ -23,7 +23,7 @@ function User() {
 
   const dataUser = async () => {
     try {
-      const { data } = await axios.get(local + "users", {
+      const { data } = await axios.get(publicSite + "users", {
         headers: {
           Authorization: "Bearer " + localStorage.token,
         },
@@ -42,7 +42,7 @@ function User() {
 
   const listInventory = async () => {
     try {
-      const { data } = await axios.get(local + "inventory", {
+      const { data } = await axios.get(publicSite + "inventory", {
         headers: {
           Authorization: "Bearer " + localStorage.token,
         },
@@ -77,7 +77,7 @@ function User() {
     // console.log("click", id);
     setDetail((last) => (last === false ? true : false));
     try {
-      const { data } = await axios.get(`http://localhost:3000/card/${id}`, {
+      const { data } = await axios.get(publicSite + `card/${id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.token,
         },

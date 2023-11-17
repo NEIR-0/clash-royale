@@ -18,7 +18,7 @@ function ChangeUser() {
   const dataUser = async () => {
     try {
       //   console.log("masuk <<");
-      const { data } = await axios.get(local + "users", {
+      const { data } = await axios.get(publicSite + "users", {
         headers: {
           Authorization: "Bearer " + localStorage.token,
         },
@@ -52,7 +52,7 @@ function ChangeUser() {
   const submitForm = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.put(local + "users", form, {
+      const { data } = await axios.put(publicSite + "users", form, {
         headers: {
           Authorization: "Bearer " + localStorage.token,
         },
