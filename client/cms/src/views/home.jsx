@@ -5,7 +5,7 @@ import Card from "../component/cardHome";
 import Footer from "../component/footer";
 import { useEffect } from "react";
 import axios from "axios";
-import { local } from "../routers/constanst";
+import { local, publicSite } from "../routers/constanst";
 import Swal from "sweetalert2";
 
 function HomePage() {

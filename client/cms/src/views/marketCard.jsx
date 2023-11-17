@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import logo from "../../public/logo.png";
-import { local } from "../routers/constanst";
+import { local, publicSite } from "../routers/constanst";
 import CardMarket from "../component/cardMarket";
 import Swal from "sweetalert2";
 

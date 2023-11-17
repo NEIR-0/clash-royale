@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { local } from "../routers/constanst";
+import { local, publicSite } from "../routers/constanst";
 import TableCards from "../component/tableCards";
 
 function Admin() {
