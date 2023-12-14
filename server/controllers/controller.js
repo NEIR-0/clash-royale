@@ -150,7 +150,9 @@ class Controllers {
         },
       });
 
-      res.status(200).json({ message: `card with id: ${id}, has been removed` });
+      res
+        .status(200)
+        .json({ message: `card with id: ${id}, has been removed` });
     } catch (error) {
       console.log(error);
       next(error);
@@ -213,7 +215,10 @@ class Controllers {
               },
             }
           );
-          const data = await Inventory.create({ userId: req.user.id, cardId: id });
+          const data = await Inventory.create({
+            userId: req.user.id,
+            cardId: id,
+          });
           res.status(201).json({ data });
         }
       } else {
@@ -352,7 +357,12 @@ class Controllers {
     try {
       // console.log(req.body);
       const { transaction_status, fraud_status, order_id } = req.body;
-      console.log(transaction_status, fraud_status, order_id, "<<<<<<<<<<<<<<<<<<<<<<<<<<");
+      console.log(
+        transaction_status,
+        fraud_status,
+        order_id,
+        "<<<<<<<<<<<<<<<<<<<<<<<<<<"
+      );
       const orderId = order_id.split("-")[0];
       console.log(orderId, ">>>>>>>>>>>>>>>>");
       const successProcess = async () => {
@@ -398,7 +408,11 @@ class Controllers {
         }
       } else if (transaction_status == "settlement") {
         await successProcess();
-      } else if (transaction_status == "cancel" || transaction_status == "deny" || transaction_status == "expire") {
+      } else if (
+        transaction_status == "cancel" ||
+        transaction_status == "deny" ||
+        transaction_status == "expire"
+      ) {
         await Order.update(
           { status: false },
           {

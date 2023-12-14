@@ -73,7 +73,9 @@ function Login() {
     <>
       <section
         className={
-          theme === "light" ? "w-full h-screen flex justify-center items-center relative duration-300 ease-in-out transition-all" : "w-full h-screen flex justify-center items-center relative bg-black duration-300 ease-in-out transition-all"
+          theme === "light"
+            ? "w-full h-screen flex justify-center items-center relative duration-300 ease-in-out transition-all"
+            : "w-full h-screen flex justify-center items-center relative bg-black duration-300 ease-in-out transition-all"
         }
       >
         {/* context */}
@@ -86,7 +88,11 @@ function Login() {
                 : "bg-blue-500 text-black rounded-full duration-300 ease-in-out transition-all px-4 py-2 md:px-10 md:py-2"
             }
           >
-            {theme === "light" ? <i class="fa-solid fa-sun"></i> : <i class="fa-solid fa-moon"></i>}
+            {theme === "light" ? (
+              <i class="fa-solid fa-sun"></i>
+            ) : (
+              <i class="fa-solid fa-moon"></i>
+            )}
           </button>
         </div>
 
@@ -103,19 +109,43 @@ function Login() {
           </div>
           {/* email */}
           <div className="">
-            <label htmlFor="email" className={theme === "light" ? "duration-300 ease-in-out transition-all text-black" : "duration-300 ease-in-out transition-all text-white"}>
+            <label
+              htmlFor="email"
+              className={
+                theme === "light"
+                  ? "duration-300 ease-in-out transition-all text-black"
+                  : "duration-300 ease-in-out transition-all text-white"
+              }
+            >
               Email
             </label>
             <br />
-            <input onChange={inputUser} type="text" name="email" className="outline-none rounded-md border border-stone-500 md:px-3 md:py-1 md:mt-2" />
+            <input
+              onChange={inputUser}
+              type="text"
+              name="email"
+              className="outline-none rounded-md border border-stone-500 md:px-3 md:py-1 md:mt-2"
+            />
           </div>
           {/* password */}
           <div className="">
-            <label htmlFor="password" className={theme === "light" ? "duration-300 ease-in-out transition-all text-black" : "duration-300 ease-in-out transition-all text-white"}>
+            <label
+              htmlFor="password"
+              className={
+                theme === "light"
+                  ? "duration-300 ease-in-out transition-all text-black"
+                  : "duration-300 ease-in-out transition-all text-white"
+              }
+            >
               Password
             </label>
             <br />
-            <input onChange={inputUser} type="text" name="password" className="outline-none rounded-md border border-stone-500 md:px-3 md:py-1 md:mt-2" />
+            <input
+              onChange={inputUser}
+              type="password"
+              name="password"
+              className="outline-none rounded-md border border-stone-500 md:px-3 md:py-1 md:mt-2"
+            />
           </div>
           <button
             className={
@@ -132,7 +162,14 @@ function Login() {
               console.log("Login Failed");
             }}
           />
-          <Link to="/register" className={theme === "light" ? "duration-300 ease-in-out transition-all text-black" : "duration-300 ease-in-out transition-all text-white"}>
+          <Link
+            to="/register"
+            className={
+              theme === "light"
+                ? "duration-300 ease-in-out transition-all text-black"
+                : "duration-300 ease-in-out transition-all text-white"
+            }
+          >
             Register
           </Link>
         </form>

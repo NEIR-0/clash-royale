@@ -108,7 +108,7 @@ function Register() {
               Password
             </label>
             <br />
-            <input onChange={inputUser} type="text" name="password" className="outline-none rounded-md border border-stone-500 md:px-3 md:py-1 md:mt-2" />
+            <input onChange={inputUser} type="password" name="password" className="outline-none rounded-md border border-stone-500 md:px-3 md:py-1 md:mt-2" />
           </div>
           <button
             className={

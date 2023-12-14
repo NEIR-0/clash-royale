@@ -27,7 +27,9 @@ module.exports = {
     });
     await queryInterface.bulkInsert("Coins", coin);
 
-    const listCard = await axios.get("https://royaleapi.github.io/cr-api-data/json/cards.json");
+    const listCard = await axios.get(
+      "https://royaleapi.github.io/cr-api-data/json/cards.json"
+    );
     // console.log(listCard.data);
     const cards = listCard.data.map((el) => {
       delete el.key;
