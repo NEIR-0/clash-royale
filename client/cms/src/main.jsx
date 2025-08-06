@@ -25,11 +25,19 @@ const auth = () => {
   return null;
 };
 
+const rootRedirect = () => {
+  return redirect(localStorage.token ? "/mainpages" : "/login");
+};
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      {
+        path: "",
+        loader: rootRedirect
+      },
       {
         path: "login",
         element: <CoverLogin />,
