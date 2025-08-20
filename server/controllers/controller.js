@@ -337,7 +337,7 @@ class Controllers {
 
       let parameter = {
         transaction_details: {
-          order_id: order.id + "-coin",
+          order_id: `${order.id}-coin-${Date.now()}`,
           userId: order.userId,
           gross_amount: order.Coin.price,
           status: "panding",
