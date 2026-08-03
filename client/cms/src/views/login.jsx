@@ -15,6 +15,7 @@ function Login() {
     email: "",
     password: "",
   });
+  const [showGoogleModal, setShowGoogleModal] = useState(true);
 
   const inputUser = (e) => {
     const { name, value } = e.target;
@@ -71,6 +72,32 @@ function Login() {
   // {theme === "light" ? "" : ""}
   return (
     <>
+      {showGoogleModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm transition-all duration-300">
+          <div className="bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-800 rounded-2xl max-w-sm w-full p-6 shadow-2xl text-black dark:text-white flex flex-col items-center text-center">
+            
+            {/* Apology Icon */}
+            <div className="text-5xl mb-4 mt-2">
+              🙏🙇‍♂️
+            </div>
+            
+            <h3 className="text-base font-bold mb-2 text-red-600 dark:text-red-400">
+              ⚠️ Google Login Disabled
+            </h3>
+            
+            <p className="text-[11px] text-gray-600 dark:text-gray-400 mb-5 leading-relaxed">
+              I used Google Login but the daily limit was reached, so currently it is disabled. Please log in using the email credentials instead.
+            </p>
+            
+            <button 
+              onClick={() => setShowGoogleModal(false)}
+              className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold shadow-md transition-all duration-200"
+            >
+              Got It / Okay
+            </button>
+          </div>
+        </div>
+      )}
       <section
         className={
           theme === "light"
