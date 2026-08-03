@@ -50,7 +50,30 @@ function CoinMarket() {
         },
       });
       // console.log(data);
-      window.snap.pay(data.token);
+      Swal.fire({
+        icon: "info",
+        title: "Payment Instructions (Sandbox)",
+        html: `
+          <div style="text-align: left; font-size: 14px; line-height: 1.6;">
+            <ol style="margin-left: 20px; list-style-type: decimal;">
+              <li style="margin-bottom: 8px;">Select the <b>BCA Virtual Account</b> payment method on the Midtrans payment panel.</li>
+              <li style="margin-bottom: 8px;">Copy the <b>Virtual Account Number</b> provided.</li>
+              <li style="margin-bottom: 8px;">Open the payment simulator in a new tab:<br/>
+                <a href="https://simulator.sandbox.midtrans.com/bca/va/index" target="_blank" rel="noopener noreferrer" style="color: #3085d6; font-weight: bold; text-decoration: underline;">
+                  Open Midtrans BCA VA Simulator
+                </a>
+              </li>
+              <li style="margin-bottom: 8px;">Paste the Virtual Account number into the simulator to complete the test transaction.</li>
+            </ol>
+          </div>
+        `,
+        confirmButtonText: "Proceed to Payment",
+        confirmButtonColor: "#3b82f6",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.snap.pay(data.token);
+        }
+      });
     } catch (error) {
       console.log(error);
       Swal.fire({

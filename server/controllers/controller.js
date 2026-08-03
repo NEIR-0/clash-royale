@@ -342,6 +342,7 @@ class Controllers {
           gross_amount: order.Coin.price,
           status: "panding",
         },
+        enabled_payments: ["bca_va"],
       };
 
       const response = await snap.createTransaction(parameter);
