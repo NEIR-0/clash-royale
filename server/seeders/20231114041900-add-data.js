@@ -18,14 +18,40 @@ module.exports = {
         updatedAt: new Date(),
       },
     ];
-    await queryInterface.bulkInsert("Users", admin);
+    
+    // check if admin email already exists
+    const existingAdmins = await queryInterface.sequelize.query(
+      `SELECT id FROM "Users" WHERE email = 'admin@gmail.com' LIMIT 1;`,
+      { type: queryInterface.sequelize.QueryTypes.SELECT }
+    );
+    if (existingAdmins.length === 0) {
+      await queryInterface.bulkInsert("Users", admin);
+    }
 
     const coin = require("../data/coin.json").map((el) => {
       el.createdAt = new Date();
       el.updatedAt = new Date();
       return el;
     });
-    await queryInterface.bulkInsert("Coins", coin);
+    
+    // check if coins already exist
+    const existingCoins = await queryInterface.sequelize.query(
+      `SELECT id FROM "Coins" LIMIT 1;`,
+      { type: queryInterface.sequelize.QueryTypes.SELECT }
+    );
+    if (existingCoins.length === 0) {
+      await queryInterface.bulkInsert("Coins", coin);
+    }
+
+    // check if cards already exist
+    const existingCards = await queryInterface.sequelize.query(
+      `SELECT id FROM "Cards" LIMIT 1;`,
+      { type: queryInterface.sequelize.QueryTypes.SELECT }
+    );
+    if (existingCards.length > 0) {
+      console.log("Cards already seeded, skipping cards API fetch & insert.");
+      return;
+    }
 
     const listCard = await axios.get(
       "https://royaleapi.github.io/cr-api-data/json/cards.json"

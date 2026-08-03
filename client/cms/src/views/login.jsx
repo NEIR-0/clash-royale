@@ -156,12 +156,12 @@ function Login() {
           >
             submit
           </button>
-          <GoogleLogin
+          {/* <GoogleLogin
             onSuccess={handleCredentialResponse}
             onError={() => {
               console.log("Login Failed");
             }}
-          />
+          /> */}
           <Link
             to="/register"
             className={

@@ -50,11 +50,6 @@ function CoinMarket() {
         },
       });
       // console.log(data);
-      Swal.fire({
-        icon: "success",
-        title: "succes add your order",
-        text: "you are one step closer to becoming a master card",
-      });
       window.snap.pay(data.token);
     } catch (error) {
       console.log(error);

@@ -7,7 +7,7 @@ function Navbar() {
         <div className="logo">
           <img src={logo} alt="barbarian-kings" className="w-8 lg:w-12" />
         </div>
-        <a href="#login">
+        <a href={import.meta.env.VITE_CMS_URL || "http://localhost:5173/login"}>
           <button className="linked w-28 h-12 flex justify-center items-center transition-all duration-200 ease-in-out text-[17px] font-light lg:w-44 lg:h-12 lg:text-[20px] hover:bg-blue-400 hover:text-white">Start now</button>
         </a>
       </section>

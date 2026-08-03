@@ -41,12 +41,12 @@ class Controllers {
     try {
       // nodemailer
       const sending = createTransport({
-        host: "smtp-relay.brevo.com",
-        port: 587,
-        // secure: false, // upgrade later with STARTTLS
+        host: process.env.MAIL_HOST || "smtp-relay.brevo.com",
+        port: Number(process.env.MAIL_PORT) || 587,
+        secure: Number(process.env.MAIL_PORT) === 465,
         auth: {
-          user: process.env.EMAIL_NODEMAILER,
-          pass: process.env.PASSWORD_NODEMAILER,
+          user: process.env.MAIL_USER || process.env.EMAIL_NODEMAILER,
+          pass: process.env.MAIL_PASS || process.env.PASSWORD_NODEMAILER,
         },
       });
 
